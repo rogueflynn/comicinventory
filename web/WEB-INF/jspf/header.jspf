@@ -1,0 +1,19 @@
+<%-- 
+    Document   : index
+    Created on : Mar 4, 2016, 12:28:37 PM
+    Author     : Victor
+--%>
+<%@ 
+    page language="java" 
+    contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1" 
+    import="com.connect.mysql.DBConnect" 
+    import= "java.sql.ResultSet" 
+%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <% DBConnect con = new DBConnect(); 
+           ResultSet rs;
+        %>
