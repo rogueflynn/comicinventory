@@ -103,11 +103,13 @@ public class DBConnect {
                 return null;
             }
         }
-        /**overloaded method that returns a user based on email.
+        /**This method returns all of the comics of the
+         * user logged in
          * 
          * @param name
          * @return 
          */
+
         public ResultSet getUserComics(String name){
             try{
                 rs = st.executeQuery("call getComics('" + name + "')");
@@ -117,8 +119,53 @@ public class DBConnect {
                 return null;
             }
         }
-        
-           /**overloaded method that returns a user based on user name.
+        /**This method returns all of the boxes of the
+         * user logged in
+         * 
+         * @param name
+         * @return 
+         */
+        public ResultSet getUserBoxes(String name){
+            try{
+                rs = st.executeQuery("call getBoxInfo('" + name + "')");
+                return rs;
+            }catch(SQLException e){
+                e.printStackTrace();
+                return null;
+            }
+        }
+        /**This method returns all of the boxes of the
+         * user logged in and the comics that it contains.
+         * 
+         * @param name
+         * @return 
+         */
+        public ResultSet getUserComicAndBoxes(String name){
+            try{
+                rs = st.executeQuery("call getComicandBox('" + name + "')");
+                return rs;
+            }catch(SQLException e){
+                e.printStackTrace();
+                return null;
+            }
+        }
+            /**This method returns all of the boxes of the
+         * user logged in and the comics that it contains.
+         * 
+         * @param box_id
+         * @return 
+         */
+        public ResultSet getUserComicsinBox(int box_id){
+            try{
+                rs = st.executeQuery("call getComicsinBox(" +box_id + ")");
+                return rs;
+            }catch(SQLException e){
+                e.printStackTrace();
+                return null;
+            }
+        }
+        /**This method returns all of the user information
+         * based on the username provided
          * 
          * @param un
          * @return 
