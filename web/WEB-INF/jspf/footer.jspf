@@ -1,6 +1,3 @@
- <% con.closeConnection(); %>
- <% out.print(con.testConnection()); %>
- </body>
+</div>
+</body>
 </html>
-
-

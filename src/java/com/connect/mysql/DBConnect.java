@@ -54,6 +54,8 @@ public class DBConnect {
             return this.con;
         }
 	
+        /*NEW CODE BLOCK*/
+        
 	/*The getData function retrieves data from the mysql database.*/
 	public ResultSet displayUsers() {
 		  try{
@@ -76,7 +78,7 @@ public class DBConnect {
          * @return the <code>ResultSet</code> object containing the user having the given userID, 
          *   or <code>null</code> if there is no such user.
          */
-        public ResultSet getUser(int userID) {
+        public ResultSet getUserById(int userID) {
                 try {
                         rs = st.executeQuery("SELECT * FROM useraccount WHERE userID = " + userID + ";");
                         return rs;
@@ -92,9 +94,23 @@ public class DBConnect {
          * @param email
          * @return 
          */
-        public ResultSet getUser(String email){
+        public ResultSet getUserByemail(String email){
             try{
-                rs = st.executeQuery("select * from user where email = '" + email + "'");
+                rs = st.executeQuery("select * from useraccount where userEmail = '" + email + "'");
+                return rs;
+            }catch(SQLException e){
+                e.printStackTrace();
+                return null;
+            }
+        }
+        /**overloaded method that returns a user based on email.
+         * 
+         * @param name
+         * @return 
+         */
+        public ResultSet getUserComics(String name){
+            try{
+                rs = st.executeQuery("call getComics('" + name + "')");
                 return rs;
             }catch(SQLException e){
                 e.printStackTrace();
@@ -102,6 +118,73 @@ public class DBConnect {
             }
         }
         
+           /**overloaded method that returns a user based on user name.
+         * 
+         * @param un
+         * @return 
+         */
+        public ResultSet getUserByUsername(String un){
+            try{
+                rs = st.executeQuery("select * from useraccount where userName = '" + un + "'");
+                return rs;
+            }catch(SQLException e){
+                e.printStackTrace();
+                return null;
+            }
+        }
+        
+          
+	//REPLACE WITH A CLASS TO VALIDATE AND RETURN THE USER ID TO SET THE SESSION!
+	/*Tests to see if the user name and password combination exists in the database
+	 * If the combination exists, the function returns true
+	 * if the combination does not exist, the function returns false
+	 */
+	public boolean validate(String u, String p) {
+		boolean result = false; 
+		String username=null, password=null;
+		try {
+			String sql = "select userName, password from useraccount"; //Stores the query
+			rs = st.executeQuery(sql); //Runs the query
+			
+			while(rs.next()) {  //Iterator that iterates through  all of the database entries
+				username = rs.getString("userName");
+				password = rs.getString("password");
+				
+				if(username.equals(u) && password.equals(p))
+					result = true;
+			}
+		} catch(Exception ex) {
+			
+		}	
+		return result;
+	}
+	
+	/*
+	 * This function createAccount() creates the account by inserting all of the 
+         * necessary data into the database
+	 * It accepts the form data from the creatAccount.jsp and inserts it into the 
+	 * database and saves the user info.
+	 */
+	public void createAccount(String un, String pw,  String e) {
+		try {
+		String sql = "insert into useraccount(username, password, userEmail) values(?,?,?)"; 	//Stores the insertion query: can take integer values
+		ps = con.prepareStatement(sql); 	//Executes the sql
+		ps.setString(1, un);                    //Stores the user name
+		ps.setString(2, pw);                    //Stores the password
+		ps.setString(3, e);			//Stores the emil.
+
+		//use execute update when using insert, update, delete...
+		ps.executeUpdate(); //Executes the sql
+		} catch(Exception ex) {
+			System.out.println("Error: " + ex);
+		} 
+	}
+	
+        
+        /*END OF THE NEW CODE BLOCK*/
+        
+        
+ 
         //This is verstion of the sendMessage will send a message based on the email entered
         public void sendMessage(String sender, String recipient, String subject, String message) {
             try {
@@ -459,55 +542,7 @@ public class DBConnect {
           
         }
         
-        
-	//REPLACE WITH A CLASS TO VALIDATE AND RETURN THE USER ID TO SET THE SESSION!
-	/*Tests to see if the user email and password combination exists in the database
-	 * If the combination exists, the function returns true
-	 * if the combination does not exist, the function returns false
-	 */
-	public boolean validate(String e, String p) {
-		boolean result = false; 
-		String email=null, password=null;
-		try {
-			String sql = "select email, pass from user"; //Stores the query
-			rs = st.executeQuery(sql); //Runs the query
-			
-			while(rs.next()) {  //Iterator that iterates through  all of the database entries
-				email = rs.getString("email");
-				password = rs.getString("pass");
-				
-				if(email.equals(e) && password.equals(p))
-					result = true;
-			}
-		} catch(Exception ex) {
-			
-		}	
-		return result;
-	}
-	
-	/*
-	 * This function insertData() is used in conjunction with createAccount servlet. 
-	 * It accepts the form data from the create.jsp and inserts it into the 
-	 * database and saves the user info.
-	 */
-	public void insertData(String fn, String ln, String pw, String ad, String p, String e) {
-		try {
-		String sql = "insert into user(fname, lname, pass, address, phone, email) values(?,?,?,?,?,?)"; 	//Stores the insertion query: can take integer values
-		ps = con.prepareStatement(sql); 	//Executes the sql
-		ps.setString(1, fn);		//Stores the first name
-		ps.setString(2, ln);		//Stores the last name
-		ps.setString(3, pw);		//Stores the password
-		ps.setString(4, ad);		//Stores the address
-		ps.setString(5, p);			//Stores the phone
-		ps.setString(6, e);			//Stores the address.
-
-		//use execute update when using insert, update, delete...
-		ps.executeUpdate(); //Executes the sql
-		} catch(Exception ex) {
-			System.out.println("Error: " + ex);
-		} 
-	}
-	
+      
 	public void deleteData(int i) {
 		try {
 		//String sql = "delete from person where name='" + n + "'";//Can only return strings

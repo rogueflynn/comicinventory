@@ -1,15 +1,17 @@
-    <title>Comic Inventory</title>
-    </head>
-    <body>
-        
+
         <% out.println("<h1>Home</h1>"); %>
        
         <% 
-           con.openConnection();
-           out.print(con.testConnection());
-           rs = con.getUser(1);
-           while(rs.next()) {
-               out.println(rs.getString("userName"));
+        
+           if(username == null) { //check to see if the user is logged on
+        %>
+       <form action="login" method="get">
+		<p>Username:      <input type="text" name="username" /></p>
+		<p>Password:   <input type="password" name="password" /> </p>
+		<input type="submit" value="Login" />
+	</form>
+       
+        <% } else {
+              out.println("<br>" + username + " is logged in."); //Print user name is logged in
            }
         %>
-       
