@@ -1,7 +1,21 @@
 #navBar {
     margin-left: 250px;
     color: white;
-    
+}
+
+.addComicForm {
+    margin-left: 60px;
+}
+form#deletePreview {
+    margin-left: 50px;
+}
+.imageContainer {
+    float: right;
+    margin-right: 80px;
+}
+img#uploadImg {
+    width: 180px;
+    height: auto;
 }
 a:link {
     color: white;

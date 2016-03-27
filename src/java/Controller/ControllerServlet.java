@@ -14,6 +14,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import com.connect.mysql.DBConnect;
+import java.io.File;
+import java.nio.file.DirectoryNotEmptyException;
+import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
 
 /**
  *
@@ -24,7 +28,9 @@ import com.connect.mysql.DBConnect;
                                                        "/login",
                                                        "/createAccount",
                                                        "/createBox",
-                                                       "/deleteBox"}
+                                                       "/deleteBox",
+                                                       "/addComic",
+                                                       "/deletePreviewImage"}
            )
 public class ControllerServlet extends HttpServlet {
   DBConnect connection = new DBConnect();
@@ -98,6 +104,43 @@ public class ControllerServlet extends HttpServlet {
                 connection.closeConnection();
                 response.sendRedirect(("controlpanel.jsp"));
             }  
+            //This section handles adding a comic
+            if(urlPattern.equals("/addComic")) {
+                String comicName, issueNumber, publisher, url, year, printing;
+                comicName = request.getParameter("comicname");
+                issueNumber = request.getParameter("issuenumber");
+                publisher = request.getParameter("publisher");
+                year = request.getParameter("year");
+                url = (String) session.getAttribute("url");  //Saves the image name in a variable.
+                printing = request.getParameter("printing");
+                int print = Integer.parseInt(printing);
+                connection.openConnection();
+                connection.addComic(comicName, issueNumber, publisher, url, year, print);
+                connection.closeConnection();
+                session.removeAttribute("url");
+                response.sendRedirect(("addcomic.jsp"));
+            } 
+            
+            //Delete preview image
+            if(urlPattern.equals("/deletePreviewImage")) {
+                String url = (String) session.getAttribute("url");
+                String saveFile = "C:\\Users\\Victor\\Documents\\comicinventory\\web\\comicImages\\" + url;
+                
+                File file = new File(saveFile);
+                
+                //Deletes the preview image from the directory 
+                //it resides in.
+                //If te deletion is successful, remove the 
+                //image session.
+                if(file.delete()) {
+                    //Remove the session
+                    session.removeAttribute("url");
+                    response.sendRedirect(("addcomic.jsp"));
+                } else {
+                    System.out.println("Error");
+                    response.sendRedirect(("addcomic.jsp"));
+                }
+            }
     }
     @Override
     public String getServletInfo() {

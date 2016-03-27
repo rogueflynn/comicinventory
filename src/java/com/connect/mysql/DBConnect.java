@@ -227,7 +227,29 @@ public class DBConnect {
 			System.out.println("Error: " + ex);
 		} 
 	}
-	
+	/*
+	 * This function createAccount() creates the account by inserting all of the 
+         * necessary data into the database
+	 * It accepts the form data from the creatAccount.jsp and inserts it into the 
+	 * database and saves the user info.
+	 */
+	public void addComic(String cn, String in,  String pb, String u, String y, int pt) {
+		try {
+		String sql = "insert into comics(comicName, issueNumber, publisher, printing, photo, yearReleased) values(?,?,?,?,?,?)"; 	//Stores the insertion query: can take integer values
+		ps = con.prepareStatement(sql); 	//Executes the sql
+		ps.setString(1, cn);                    //Stores the comic name
+		ps.setString(2, in);                    //Stores the issue number
+		ps.setString(3, pb);			//Stores the publisher
+                ps.setInt(4, pt);			//Stores the print
+                ps.setString(5, u);			//Stores the url
+                ps.setString(6, y);			//Stores the url
+                
+		//use execute update when using insert, update, delete...
+		ps.executeUpdate(); //Executes the sql
+		} catch(Exception ex) {
+			System.out.println("Error: " + ex);
+		} 
+	}
         /*
 	 * This function createBox() creates a box by inserting all of the 
          * necessary data into the database
