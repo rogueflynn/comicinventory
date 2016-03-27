@@ -3,6 +3,7 @@ package com.connect.mysql;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.Types;
@@ -16,13 +17,13 @@ public class DBConnect {
 	private Connection con; //Opens and closes the database connection
 	private Statement st;	//Interprets the sql statements
 	private ResultSet rs; 	//Returns the results of the query
-	private PreparedStatement ps;
+	private PreparedStatement ps;   //Used when executing an update or delete
+        private CallableStatement cs;   //Needed for use of stored procedures
         private String connectionGood;  //Used to test if the connection is good
 
-	public DBConnect() {
-		
-	}
-        
+	public DBConnect() {}
+       
+        /*Opens the connection to the database*/
         public void openConnection() {
             try {
 			Class.forName("com.mysql.jdbc.Driver"); //Utilizes the java database driver
@@ -227,9 +228,41 @@ public class DBConnect {
 		} 
 	}
 	
+        /*
+	 * This function createBox() creates a box by inserting all of the 
+         * necessary data into the database
+	 * It accepts the form data from the creatBox.jsp and inserts it into the 
+	 * database and saves the box info.
+	 */
+	public void createBox(String un, String bn) {
+		try {
+		cs = con.prepareCall("{call createBox(?, ?)}");
+		cs.setString(1, un);                    //Stores the user name
+		cs.setString(2, bn);                    //Stores the password
+
+		//use execute update when using insert, update, delete...
+		cs.executeUpdate(); //Executes the sql
+		} catch(Exception ex) {
+			System.out.println("Error: " + ex);
+		} 
+	}
         
+        /*
+            The deleteBox method is used to delete 
+            a users box based on the boxID.  It only
+            takes in one paramater.
+        */
+        public void deleteBox(int boxID) {
+		try {
+                    String sql = "delete from box where boxID=?";
+                    ps = con.prepareStatement(sql); 	//Executes the sql
+                    ps.setInt(1, boxID);
+                    ps.executeUpdate();
+		} catch(Exception ex) {
+			System.out.println("Error: " + ex);
+		}
+	}
         /*END OF THE NEW CODE BLOCK*/
-        
         
  
         //This is verstion of the sendMessage will send a message based on the email entered
@@ -590,18 +623,7 @@ public class DBConnect {
         }
         
       
-	public void deleteData(int i) {
-		try {
-		//String sql = "delete from person where name='" + n + "'";//Can only return strings
-		//st.executeUpdate(sql);
-		String sql = "delete from person where id=?";
-		PreparedStatement statement = con.prepareStatement(sql); 	//Executes the sql
-		statement.setInt(1, i);
-		statement.executeUpdate();
-		} catch(Exception ex) {
-			System.out.println("Error: " + ex);
-		}
-	}
+
 	public void updateData(String i, String n) {
 		try {
 		String sql = "update person set age=? where name=?";

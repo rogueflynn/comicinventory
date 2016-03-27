@@ -4,7 +4,7 @@
     
 }
 a:link {
-    color: black;
+    color: white;
 }
 a:visited {
     color: white;
@@ -12,7 +12,16 @@ a:visited {
 a:hover {
     color: yellow;
 }
-
+a:link#comiclist {
+    color: #000099;
+    text-decoration: none;
+}
+a:visited#comiclist {
+    color: #000099;
+}
+a:hover#comiclist {
+    color: #000099;
+}
 
 div.content {
     background-color: white;

@@ -22,12 +22,14 @@ import com.connect.mysql.DBConnect;
 @WebServlet(name = "ControllerServlet", 
                                         urlPatterns = {"/ControllerServlet",
                                                        "/login",
-                                                       "/createAccount"}
+                                                       "/createAccount",
+                                                       "/createBox",
+                                                       "/deleteBox"}
            )
 public class ControllerServlet extends HttpServlet {
   DBConnect connection = new DBConnect();
 
-
+    /*doGet listens for and get requests */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -57,15 +59,17 @@ public class ControllerServlet extends HttpServlet {
           }    
     }
 
-
+    /* doPost listens for any posts requests */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
             HttpSession session = request.getSession();
-            String un, pw, email;
+            
             String urlPattern = request.getServletPath();
             
+            //This section handles creating an account
             if(urlPattern.equals("/createAccount")) {
+                String un, pw, email;
                 connection.openConnection();
                 un = request.getParameter("username");
                 pw = request.getParameter("pass");
@@ -75,7 +79,25 @@ public class ControllerServlet extends HttpServlet {
                 connection.closeConnection();
                 response.sendRedirect(("controlpanel.jsp"));
             } 
-                   
+            
+            //This section handles creating a box
+            if(urlPattern.equals("/createBox")) {
+                String boxName, username;
+                boxName = request.getParameter("boxName");
+                username = (String) session.getAttribute("username");
+                connection.openConnection();
+                connection.createBox(username, boxName);
+                connection.closeConnection();
+                response.sendRedirect(("controlpanel.jsp"));
+            }  
+            
+                //This section handles creating a box
+            if(urlPattern.equals("/deleteBox")) {
+                connection.openConnection();
+                connection.deleteBox(20);
+                connection.closeConnection();
+                response.sendRedirect(("controlpanel.jsp"));
+            }  
     }
     @Override
     public String getServletInfo() {
