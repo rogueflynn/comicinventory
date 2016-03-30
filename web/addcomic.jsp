@@ -8,7 +8,7 @@
       <div class="imageContainer">
         <% 
           String url = (String) session.getAttribute("url"); 
-	    
+
 	    //This piece of code will test whether there is an active session in the browser.
 	   if(url==null) {
 	%>
@@ -34,7 +34,7 @@
      <!--PHOTO UPLOAD FORM ENDS HERE -->
 <div class="addComicForm">
     <form action="addComic" id="createForm" method="post">
-            <p><label for="comicname"><div id="rLabel">Comic Name:</div></label> <input type="text" name="comicname" id="comicname" /></p>
+            <p><label for="comicname"><div id="rLabel">Comic Name:</div></label> <input type="text" name="comicname" id="comicname"  /></p>
             <p><label for="issuenumber"><div id="rLabel">Issue #:</div></label>   <input type="text" name="issuenumber" id="pass" /> </p>
             <p><label for="publisher"><div id="rLabel">Publisher:</div></label>   <input type="text" name="publisher" id="publisher" /> </p>
             <p><label for="printing"><div id="rLabel">Print:</div></label>   <input type="text" name="printing" id="printing" /> </p>

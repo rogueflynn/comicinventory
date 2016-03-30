@@ -71,7 +71,19 @@ public class DBConnect {
             }
 			
 	}
-        
+        /*The getData function retrieves all of the comics from the mysql database.*/
+	public ResultSet getAllComics() {
+		  try{
+                String sql =   "select * from comics order by comicName ASC";
+            
+                rs = st.executeQuery(sql);
+                
+                return rs;
+            }catch (SQLException e){
+                e.printStackTrace();
+                return null;
+            }		
+	}
          /**
          * A convenience method that retrieves the user having the given userID.
          * 
@@ -227,11 +239,28 @@ public class DBConnect {
 			System.out.println("Error: " + ex);
 		} 
 	}
+        
+        /*
+                The addComictoInventory will add the comic to the 
+                inventory of the user currently logged in.
+	 */
+	public void addComictoInventory(int comicID, int boxID) {
+		try {
+		String sql = "insert into comic_box_junction(comicID, boxID) values(?,?)"; 	//Stores the insertion query: can take integer values
+		ps = con.prepareStatement(sql); 	//Executes the sql
+		ps.setInt(1, comicID);                  //Stores the user name
+		ps.setInt(2, boxID);                    //Stores the password
+
+		//use execute update when using insert, update, delete...
+		ps.executeUpdate(); //Executes the sql
+		} catch(Exception ex) {
+			System.out.println("Error: " + ex);
+		} 
+	}
+        
 	/*
-	 * This function createAccount() creates the account by inserting all of the 
-         * necessary data into the database
-	 * It accepts the form data from the creatAccount.jsp and inserts it into the 
-	 * database and saves the user info.
+           The addComic method allows the user to add the comic to the site
+           database.
 	 */
 	public void addComic(String cn, String in,  String pb, String u, String y, int pt) {
 		try {

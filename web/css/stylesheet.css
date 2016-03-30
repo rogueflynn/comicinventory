@@ -39,6 +39,7 @@ a:hover#comiclist {
 
 div.content {
     background-color: white;
+    position: absolute;
     border: #48f solid 4px;
     clear: left;
     padding: 3em;
@@ -67,13 +68,17 @@ body {
 	//background-image: url(background.jpg);
 }
 #listbox { background-color: #99ccff; }
-#leftColumn { 
-        float:right;
-	width:150px;
-        height: 360px;
-        margin-right: 80px;
-         opacity: 0.6;
-        background-color: orange;
+.leftColumn {  
+        float:left;
+        margin-right: 10px;
+}
+.leftComicColumn {  
+        float:left;
+        margin-left: 40px;
+}
+.rightColumn{ 
+        float: right;
+        margin-right: 200px;
 }
 #titleColor {
     background-color: orange;
@@ -86,10 +91,7 @@ body {
         text-decoration: underline;
 }
 
-#rightColumn{ 
-        float: right;
-        text-align: left;
-}
+
 #mainHeader {
     margin: 0 200px 0 240px;
     background-color: white; 
