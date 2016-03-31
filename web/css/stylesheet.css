@@ -76,10 +76,33 @@ body {
         float:left;
         margin-left: 40px;
 }
-.rightColumn{ 
-        float: right;
-        margin-right: 200px;
+.addToBox{ 
+        margin-left: 500px;
+        background-color: #F5FF99;
+        width: 200px;
+        height: 100px;
+        position: fixed;
+        text-align: center;
 }
+#selectBoxHeader {
+    background-color: red;
+    width:200px;
+    position: relative;
+    color: white;
+    margin-top: -20px;
+}
+tr#searchHeader {
+    background-color: red;
+    color: white;
+}
+select {
+    width:170px;
+    height: 30px;
+    font-size: 20px;
+    font-family: Georgia, "Times New Roman", Times, serif;
+    color: #000099;
+}
+
 #titleColor {
     background-color: orange;
     opacity: 0.6;
@@ -113,9 +136,25 @@ body {
     float: right;
 }
 #searchDB {
-    float: right;
+    width:500px;
+    margin: -5px 0px 0px 820px;
+    position: absolute;
 }
-
+img#searchPic {
+    width: 70px;
+    height: auto;
+}
+table#searchResult {
+    width:400px;
+    height: auto;
+}
+#comicSearchTitle {
+    align: center;
+    padding-left: 50px;
+    padding-right:50px;
+    padding-bottom: 50px;
+    
+}
 #rLabel {
     display: inline-block;
     float: left;
@@ -145,4 +184,8 @@ body {
 }
 .white {
     background-color: white;   
+}
+tr:nth-child(even) {
+   background-color: #F5FF99; 
+   //FFA6A6
 }

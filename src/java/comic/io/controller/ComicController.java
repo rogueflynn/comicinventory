@@ -20,13 +20,21 @@ import javax.servlet.http.HttpSession;
  * @author Victor
  */
 @WebServlet(name = "ComicController", urlPatterns = {"/ComicController",
-                                                      "/addToRoundup"})
+                                                      "/addToRoundup",
+                                                      "/searchSite"})
 public class ComicController extends HttpServlet {
 DBConnect connection = new DBConnect(); 
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+                        HttpSession session = request.getSession();
+            
+                        String urlPattern = request.getServletPath();
+                        if(urlPattern.equals("/searchSite")) {
+                             String searchQuery = request.getParameter("search");
+                             response.sendRedirect("searchcomic.jsp?search=" + searchQuery);
+                        }
      
     }
 
@@ -38,10 +46,11 @@ DBConnect connection = new DBConnect();
             
                         String urlPattern = request.getServletPath();
                         if(urlPattern.equals("/addToRoundup")) {
-                             String comics[] = request.getParameterValues("comics");  //Gets the population id as string
+                             String comics[] = request.getParameterValues("comics");  //Gets the comicID's as string
+                             String boxID = request.getParameter("box");
                              connection.openConnection();
                              for(String comicID : comics) {
-                                 connection.addComictoInventory(Integer.parseInt(comicID), 1);
+                                 connection.addComictoInventory(Integer.parseInt(comicID), Integer.parseInt(boxID));
                              }  
                              connection.closeConnection();
                              response.sendRedirect("controlpanel.jsp");

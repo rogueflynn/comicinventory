@@ -84,6 +84,21 @@ public class DBConnect {
                 return null;
             }		
 	}
+        
+        /*The getData function retrieves the comics by title.*/
+	public ResultSet getComicsByTitle(String search) {
+		  try{
+                String sql =   "SELECT * FROM comics WHERE comicName LIKE '%"+ search +"%'";
+            
+                rs = st.executeQuery(sql);
+                
+                return rs;
+            }catch (SQLException e){
+                e.printStackTrace();
+                return null;
+            }		
+	}
+        
          /**
          * A convenience method that retrieves the user having the given userID.
          * 
