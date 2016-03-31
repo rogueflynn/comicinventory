@@ -8,7 +8,14 @@
     contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" 
     import="com.connect.mysql.DBConnect" 
+    import="db.data.entity.User"
+     import="db.data.entity.Comic"
     import= "java.sql.ResultSet" 
+    import="java.util.HashMap"
+    import="java.util.Set"
+    import="java.util.Iterator"
+    import="java.util.Map"
+    import="java.util.List"
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -28,10 +35,14 @@
 	  
         </script>
         <% 
-           DBConnect con = new DBConnect(); 
-           DBConnect con2 = new DBConnect(); 
-           ResultSet rs;
-           ResultSet comic;
+           //Global declarations
+           User user = new User();
+           Comic comicInfo = new Comic();
+           HashMap hmap;
+           Set set;
+           Iterator iterator;
+           List<Integer> comicID;
+           List<String> un, usercomics, siteComics;
            String username = (String) session.getAttribute("username"); 
         %>
     <title>Comic Inventory</title>

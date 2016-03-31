@@ -11,19 +11,20 @@
 <%
     String name = (String) session.getAttribute("username");
     String search = request.getParameter("search");
-    con.openConnection();
-    rs = con.getComicsByTitle(search);
-    while(rs.next()) {
+    comicID = comicInfo.getComicsID(search);
+   for (int cID : comicID) {
 %>
 <tr>
     <td>
-    <input type="checkbox" class="checkbox" name="comics" value="<%=rs.getString("comicID") %>" id="comics">
+    <input type="checkbox" class="checkbox" name="comics" value="<%= cID %>" id="comics">
     </td>
     <td id="comicSearchTitle">
-        <h3><%=rs.getString("comicName") %></h3>
-        Issue #<%=rs.getString("issueNumber")%>
+        <h3><%=comicInfo.getComicTitle(cID) %></h3>
+        <p>Issue #<%=comicInfo.getComicIssue(cID)%></p>
     </td>
-     <td width="180px"><img src="comicImages/<%=rs.getString("photo") %>" id="searchPic"></td>
+     <td width="180px">
+         <img src="comicImages/<%=comicInfo.getComicPhoto(cID) %>" id="searchPic">
+     </td>
 </tr>
 
 <%}%>
@@ -34,16 +35,18 @@
 <select name="box">
 <option selected="selected" id="boxSelect">Select a box</option>
 <%
+    //Grabs the user boxes
     if(name != null) {
-    rs = con.getUserBoxes(name);
-    while(rs.next()) {
+        hmap = user.getUserBoxes(name);
+        set = hmap.entrySet();
+        iterator = set.iterator();
+        while(iterator.hasNext()) {
+             Map.Entry mentry = (Map.Entry)iterator.next();
 %> 
 
-    <option value="<%=rs.getString("boxID")%>">Box: <%=rs.getString("boxTracker")%></option>
+    <option value="<%=(int) mentry.getKey()%>">Box: <%=(String) mentry.getValue()%></option>
     
-<% } 
-con.closeConnection();
-%>
+<% } %>
 </select>
 <input type="submit" value="Add" />
 <%}%>
