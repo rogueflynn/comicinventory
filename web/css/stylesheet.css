@@ -1,4 +1,5 @@
 #navBar {
+    padding-top: 50px;
     margin-left: 250px;
     color: white;
 }
@@ -17,13 +18,14 @@ img#uploadImg {
     width: 180px;
     height: auto;
 }
-a:link {
+a:link#nav {
+    color: white;
+    text-decoration: none;
+}
+a:visited#nav {
     color: white;
 }
-a:visited {
-    color: white;
-}
-a:hover {
+a:hover#nav{
     color: yellow;
 }
 a:link#comiclist {
@@ -47,10 +49,12 @@ div.content {
     margin: 0 200px 0 240px;
     padding: 20px 10px 20px 40px;
     margin-right: 40px;
+    margin-top: 80px;
    //white-space: nowrap;
     border: medium solid #000;
     font-family: Georgia, "Times New Roman", Times, serif;
     color: #000099;
+    z-index: -1;
 }
 div.main_container {
   padding: 5px;
@@ -78,6 +82,7 @@ body {
 }
 .addToBox{ 
         margin-left: 500px;
+        margin-top: 50px;
         background-color: #F5FF99;
         width: 200px;
         height: 100px;
@@ -109,11 +114,6 @@ select {
    // filter: alpha(opacity=60);
 
 }
-#lcHeader {
-        text-align: center;
-        text-decoration: underline;
-}
-
 
 #mainHeader {
     margin: 0 200px 0 240px;
@@ -137,7 +137,7 @@ select {
 }
 #searchDB {
     width:500px;
-    margin: -5px 0px 0px 820px;
+    margin: -10px 0px 0px 768px;
     position: absolute;
 }
 img#searchPic {
@@ -146,14 +146,18 @@ img#searchPic {
 }
 table#searchResult {
     width:400px;
-    height: auto;
 }
-#comicSearchTitle {
-    align: center;
-    padding-left: 50px;
-    padding-right:50px;
-    padding-bottom: 50px;
-    
+td#comicSearchTitle {
+    text-align:  center;
+    vertical-align: middle;
+    font-size: 20px;
+    font-family: Georgia, "Times New Roman", Times, serif;
+}
+td#comicCheckbox {
+     vertical-align: middle;
+}
+td#comicCellpic {
+    text-align: center;
 }
 #rLabel {
     display: inline-block;

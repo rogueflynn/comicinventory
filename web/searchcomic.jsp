@@ -15,14 +15,14 @@
    for (int cID : comicID) {
 %>
 <tr>
-    <td>
+    <td id="comicCheckbox">
     <input type="checkbox" class="checkbox" name="comics" value="<%= cID %>" id="comics">
     </td>
     <td id="comicSearchTitle">
         <h3><%=comicInfo.getComicTitle(cID) %></h3>
         <p>Issue #<%=comicInfo.getComicIssue(cID)%></p>
     </td>
-     <td width="180px">
+     <td width="180px" id="comicCellpic">
          <img src="comicImages/<%=comicInfo.getComicPhoto(cID) %>" id="searchPic">
      </td>
 </tr>

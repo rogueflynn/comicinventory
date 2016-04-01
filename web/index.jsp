@@ -17,16 +17,4 @@
               out.println("<br>" + username + " is logged in."); //Print user name is logged in
            }
         %>
-        <%
-           /*
-          
-             comicID = comicInfo.getComicsID("ca");
-             for (int cID : comicID) {
-                 out.println("Comic Name: " + comicInfo.getComicTitle(cID) + "<br>");
-                 out.println("Issue #" + comicInfo.getComicIssue(cID) + "<br>");
-                 out.println("Photo: " + comicInfo.getComicPhoto(cID) + "<br>");
-            } 
-                   */
-          // out.println(comicInfo.getComicPhoto(1) + "<br>");
-        
-        %>
+      

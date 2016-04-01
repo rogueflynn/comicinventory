@@ -21,8 +21,9 @@
        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+        <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
         <link rel="stylesheet" type="text/css" href="css/stylesheet.css">
+            
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.0/jquery.min.js" ></script>
         <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
         <script type="text/javascript" src="javascript/jquery.toggle.list.js" ></script> 
@@ -34,6 +35,16 @@
                 }
 	  
         </script>
+        
+        <!-- MODEL STUFF-->
+        	
+
+	<link rel="stylesheet" href="css/reset.css"> <!-- CSS reset -->
+	<link rel="stylesheet" href="css/style.css"> <!-- Gem style -->
+	<script src="javascript/modernizr.js"></script> <!-- Modernizr -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script src="javascript/main.js"></script> <!-- Gem jQuery -->
+        
         <% 
            //Global declarations
            User user = new User();
@@ -48,10 +59,119 @@
     <title>Comic Inventory</title>
     </head>
     <body>
-        <form action="searchSite" method="get" id="searchDB">
-                <input type="text" name="search" />
-                <input type="submit" value="Search"></input>
-        </form>
+           
+        	<header role="banner">
+		<div id="cd-logo"><a href="#0"><img id="logo" src="img/siteLogo.png" alt="Logo"></a></div>
+                <div id="navBar">
+                        <a href="index.jsp" id="nav">Home</a> | 
+                        <a href="createAccount.jsp" id="nav">Sign-up</a> | 
+                        <a href="#" id="nav">Contact</a> |
+                        <a href="#" id="nav">About Us</a>
+                </div>
+                        <form action="searchSite" method="get" id="searchDB">
+                            <input type="text" name="search" />
+                            <input type="submit" value="Search"></input>
+                        </form>
+		<nav class="main-nav">
+			<ul>
+				<!-- inser more links here -->
+				<li><a class="cd-signin" href="#0">Sign in</a></li>
+				<li><a class="cd-signup" href="#0">Sign up</a></li>
+			</ul>
+		</nav>
+	</header>
+            
+	<div class="cd-user-modal"> <!-- this is the entire modal form, including the background -->
+		<div class="cd-user-modal-container"> <!-- this is the container wrapper -->
+			<ul class="cd-switcher">
+				<li><a href="#0">Sign in</a></li>
+				<li><a href="#0">New account</a></li>
+			</ul>
+
+			<div id="cd-login"> <!-- log in form -->
+				<form class="cd-form">
+					<p class="fieldset">
+						<label class="image-replace cd-email" for="signin-email">E-mail</label>
+						<input class="full-width has-padding has-border" id="signin-email" type="email" placeholder="E-mail">
+						<span class="cd-error-message">Error message here!</span>
+					</p>
+
+					<p class="fieldset">
+						<label class="image-replace cd-password" for="signin-password">Password</label>
+						<input class="full-width has-padding has-border" id="signin-password" type="text"  placeholder="Password">
+						<a href="#0" class="hide-password">Hide</a>
+						<span class="cd-error-message">Error message here!</span>
+					</p>
+
+					<p class="fieldset">
+						<input type="checkbox" id="remember-me" checked>
+						<label for="remember-me">Remember me</label>
+					</p>
+
+					<p class="fieldset">
+						<input class="full-width" type="submit" value="Login">
+					</p>
+				</form>
+				
+				<p class="cd-form-bottom-message"><a href="#0">Forgot your password?</a></p>
+				<!-- <a href="#0" class="cd-close-form">Close</a> -->
+			</div> <!-- cd-login -->
+
+			<div id="cd-signup"> <!-- sign up form -->
+				<form class="cd-form">
+					<p class="fieldset">
+						<label class="image-replace cd-username" for="signup-username">Username</label>
+						<input class="full-width has-padding has-border" id="signup-username" type="text" placeholder="Username">
+						<span class="cd-error-message">Error message here!</span>
+					</p>
+
+					<p class="fieldset">
+						<label class="image-replace cd-email" for="signup-email">E-mail</label>
+						<input class="full-width has-padding has-border" id="signup-email" type="email" placeholder="E-mail">
+						<span class="cd-error-message">Error message here!</span>
+					</p>
+
+					<p class="fieldset">
+						<label class="image-replace cd-password" for="signup-password">Password</label>
+						<input class="full-width has-padding has-border" id="signup-password" type="text"  placeholder="Password">
+						<a href="#0" class="hide-password">Hide</a>
+						<span class="cd-error-message">Error message here!</span>
+					</p>
+
+					<p class="fieldset">
+						<input type="checkbox" id="accept-terms">
+						<label for="accept-terms">I agree to the <a href="#0">Terms</a></label>
+					</p>
+
+					<p class="fieldset">
+						<input class="full-width has-padding" type="submit" value="Create account">
+					</p>
+				</form>
+
+				<!-- <a href="#0" class="cd-close-form">Close</a> -->
+			</div> <!-- cd-signup -->
+
+			<div id="cd-reset-password"> <!-- reset password form -->
+				<p class="cd-form-message">Lost your password? Please enter your email address. You will receive a link to create a new password.</p>
+
+				<form class="cd-form">
+					<p class="fieldset">
+						<label class="image-replace cd-email" for="reset-email">E-mail</label>
+						<input class="full-width has-padding has-border" id="reset-email" type="email" placeholder="E-mail">
+						<span class="cd-error-message">Error message here!</span>
+					</p>
+
+					<p class="fieldset">
+						<input class="full-width has-padding" type="submit" value="Reset password">
+					</p>
+				</form>
+
+				<p class="cd-form-bottom-message"><a href="#0">Back to log-in</a></p>
+			</div> <!-- cd-reset-password -->
+			<a href="#0" class="cd-close-form">Close</a>
+		</div> <!-- cd-user-modal-container -->
+	</div> <!-- cd-user-modal -->
+
            <%
                 if(username != null)
                 {
@@ -62,12 +182,7 @@
            <%
                 }
            %>
-            <div id="navBar">
-                <a href="index.jsp">Home</a> | 
-                <a href="createAccount.jsp">Sign-up</a> | 
-                <a href="#">Contact</a> |
-                <a href="#"/>About Us</a>
-           </div>
+           
       
             
            <div class="content">
