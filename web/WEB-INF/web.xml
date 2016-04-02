@@ -10,12 +10,13 @@
             <description>header and footer settings</description>
             <url-pattern>/index.jsp</url-pattern>
             <url-pattern>/controlpanel.jsp</url-pattern>
-             <url-pattern>/createAccount.jsp</url-pattern>
-             <url-pattern>/addcomic.jsp</url-pattern>
-              <url-pattern>/searchcomic.jsp</url-pattern>
-              <url-pattern>/comic.jsp</url-pattern>
-              <url-pattern>/box.jsp</url-pattern>
-              <url-pattern>/faq.jsp</url-pattern>
+            <url-pattern>/createAccount.jsp</url-pattern>
+            <url-pattern>/addcomic.jsp</url-pattern>
+            <url-pattern>/searchcomic.jsp</url-pattern>
+            <url-pattern>/comic.jsp</url-pattern>
+            <url-pattern>/box.jsp</url-pattern>
+            <url-pattern>/faq.jsp</url-pattern>
+            <url-pattern>/contact.jsp</url-pattern>
             <include-prelude>/WEB-INF/jspf/header.jspf</include-prelude>
             <include-coda>/WEB-INF/jspf/footer.jspf</include-coda>
         </jsp-property-group>

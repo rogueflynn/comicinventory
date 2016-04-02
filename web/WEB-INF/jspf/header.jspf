@@ -9,8 +9,7 @@
     pageEncoding="ISO-8859-1" 
     import="com.connect.mysql.DBConnect" 
     import="db.data.entity.User"
-     import="db.data.entity.Comic"
-    import= "java.sql.ResultSet" 
+    import="db.data.entity.Comic"
     import="java.util.HashMap"
     import="java.util.Set"
     import="java.util.Iterator"
@@ -36,9 +35,7 @@
 	  
         </script>
         
-        <!-- MODEL STUFF-->
-        	
-
+        <!-- MODAL STUFF-->
 	<link rel="stylesheet" href="css/reset.css"> <!-- CSS reset -->
 	<link rel="stylesheet" href="css/style.css"> <!-- Gem style -->
 	<script src="javascript/modernizr.js"></script> <!-- Modernizr -->
@@ -59,25 +56,33 @@
     <title>Comic Inventory</title>
     </head>
     <body>
-           
+                <!--MODAL LOGIN DESIGN CREDIT:  https://codyhouse.co/gem/loginsignup-modal-window/ -->
         	<header role="banner">
-		<div id="cd-logo"><a href="#0"><img id="logo" src="img/siteLogo.png" alt="Logo"></a></div>
-                <div id="navBar">
-                        <a href="index.jsp" id="nav">Home</a> | 
-                        <a href="createAccount.jsp" id="nav">Sign-up</a> | 
-                        <a href="#" id="nav">Contact</a> |
-                        <a href="#" id="nav">About Us</a>
+		<div id="cd-logo"><a href="index.jsp"><img id="logo" src="img/siteLogo.png" alt="Logo"></a></div>
+                <div id="navBar"> 
+                        <a href="controlpanel.jsp" id="nav">Round-up!</a> | 
+                        <a href="faq.jsp" id="nav">FAQ</a> |
+                        <a href="contact.jsp" id="nav">Contact</a>
                 </div>
                         <form action="searchSite" method="get" id="searchDB">
                             <input type="text" name="search" />
                             <input type="submit" value="Search"></input>
                         </form>
 		<nav class="main-nav">
+                         <!--LOG OUT-->
+                         <% if(username != null) { %>
+                           <div id="logoutBtn"> 
+                                <form action="logout" method="post" id="logout" class="logoutBtn">
+                                  <a href="#" onclick="submitForm();" ><img src="img/logout.png"/></a>
+                                </form>
+                           </div>
+                         <%} else {%>
 			<ul>
-				<!-- inser more links here -->
-				<li><a class="cd-signin" href="#0">Sign in</a></li>
-				<li><a class="cd-signup" href="#0">Sign up</a></li>
+				<!-- insert more links here -->
+                                <div id="loginBtn"><li><a class="cd-signin" href="#0"><img src="img/login.png" /></a></li></div>
+                                <div id="signupBtn"><li><a class="cd-signup" href="#0"><img src="img/signupgraphic.png" /></a></li> </div>
 			</ul>
+                        <% } %>
 		</nav>
 	</header>
             
@@ -89,16 +94,16 @@
 			</ul>
 
 			<div id="cd-login"> <!-- log in form -->
-				<form class="cd-form">
+				<form class="cd-form" method="get" action="login">
 					<p class="fieldset">
-						<label class="image-replace cd-email" for="signin-email">E-mail</label>
-						<input class="full-width has-padding has-border" id="signin-email" type="email" placeholder="E-mail">
+						<label class="image-replace cd-username" for="signin-username">Username</label>
+						<input class="full-width has-padding has-border" name="username"  type="text" placeholder="Username">
 						<span class="cd-error-message">Error message here!</span>
 					</p>
 
 					<p class="fieldset">
 						<label class="image-replace cd-password" for="signin-password">Password</label>
-						<input class="full-width has-padding has-border" id="signin-password" type="text"  placeholder="Password">
+						<input class="full-width has-padding has-border" type="text"  name="password" placeholder="Password">
 						<a href="#0" class="hide-password">Hide</a>
 						<span class="cd-error-message">Error message here!</span>
 					</p>
@@ -171,20 +176,8 @@
 			<a href="#0" class="cd-close-form">Close</a>
 		</div> <!-- cd-user-modal-container -->
 	</div> <!-- cd-user-modal -->
-
-           <%
-                if(username != null)
-                {
-           %>
-           <form action="logout" method="post" id="logout" class="logoutBtn">
-                    <a href="#" onclick="submitForm();" >logout</a>
-           </form>
-           <%
-                }
-           %>
            
-      
-            
+           <!--CONTENT-->
            <div class="content">
         
         

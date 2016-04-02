@@ -4,6 +4,44 @@
     color: white;
 }
 
+#createForm {
+    float: right;
+    margin-right: 30px;
+}
+#inputMargin {
+    margin-bottom: 20px;
+}
+#loginForm {
+    float: left;
+}
+#logoutBtn {
+    margin-top: 30px;
+    margin-left: 20px;
+    height: auto;
+}
+#loginBtn {
+    margin-top: 20px;
+}
+#signupBtn {
+    margin-top: -82px;
+    margin-left: 90px;
+}
+#hRule {
+    border-left:1px solid #000;
+    border-color: #000099;
+    margin-top: -100px;
+    margin-left: 350px;
+    height: 150px; 
+}
+#loginHeader {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  background-color: #000099;
+  color: white;
+  width: 255px;
+}
+
 .addComicForm {
     margin-left: 60px;
 }
@@ -122,11 +160,6 @@ select {
     width: 800px;
     background-color: #99ccff;
 }
-#loginForm {
-    float: right;
-    font-size: 13px;
-}
-
 #createLink {
     padding-left: 20px;
 }
@@ -175,20 +208,7 @@ td#comicCellpic {
 .logoutBtn {
     float: right;
 }
-#allowed {
-    margin-left: 250px;
-    font-size: 13px;
-}
-#surveyError {
-    font-size: 13px;
-}
 
-.lightBlue {
-    background-color: lightblue;   
-}
-.white {
-    background-color: white;   
-}
 tr:nth-child(even) {
    background-color: #F5FF99; 
    //FFA6A6

@@ -3,7 +3,7 @@
 	    //This piece of code will test whether there is an active session in the browser.
             //If there no active session, the page will redirect back to the index page
 	   if(username == null)
-	    	response.sendRedirect("index.jsp"); 
+	    	response.sendRedirect("createAccount.jsp"); 
 	%>
        
         <% 

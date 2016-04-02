@@ -74,6 +74,7 @@ header[role=banner]::after {
   background: url("../img/cd-icon-menu.svg") no-repeat center center;
   cursor: pointer;
 }
+
 .main-nav ul {
   position: absolute;
   top: 0;
@@ -130,7 +131,7 @@ header[role=banner]::after {
     margin-left: 1em;
   }
   .main-nav li:nth-last-child(2) {
-    margin-left: 2em;
+    margin-left: 1em;
   }
   .main-nav a {
     display: inline-block;
@@ -139,12 +140,11 @@ header[role=banner]::after {
     background: transparent;
   }
   .main-nav a.cd-signin, .main-nav a.cd-signup {
-    padding: .6em 1em;
-    border: 1px solid rgba(255, 255, 255, 0.6);
-    border-radius: 50em;
+     padding: .4em;
+    //border: 1px solid rgba(255, 255, 255, 0.6);
+   // border-radius: 50em;
   }
   .main-nav a.cd-signup {
-    background: #2f889a;
     border: none;
   }
 }
