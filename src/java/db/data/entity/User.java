@@ -154,6 +154,22 @@ public class User {
                 return null;
             }
         }
+        
+          public List<Integer> getUserComicID(int box_id){
+            con.openConnection();
+            List<Integer> comicID = new ArrayList();
+            try{
+                rs = con.getStatement().executeQuery("call getComicsinBox(" +box_id + ")");
+                while(rs.next()) {
+                    comicID.add(Integer.parseInt(rs.getString("comicID")));
+                }
+                close();
+                return comicID;
+            }catch(SQLException e){
+                e.printStackTrace();
+                return null;
+            }
+        }
          /**This method returns all of the user information
          * based on the username provided
          * 
@@ -225,6 +241,20 @@ public class User {
 			System.out.println("Error: " + ex);
 		} 
 	}
+        public void deleteComicInBox(int boxID, int comicID) {
+                con.openConnection();
+		try {
+                    String sql = "delete from comic_box_junction where comicID=? && boxID=?";
+                    ps = con.getConnection().prepareStatement(sql); 	//Executes the sql
+                    ps.setInt(1, comicID);
+                    ps.setInt(2, boxID);
+                    ps.executeUpdate();
+                    close();
+		} catch(Exception ex) {
+			System.out.println("Error: " + ex);
+		}
+	}
+        
         private void close() {
             con.closeConnection();
             try { rs.close(); } catch(Exception e) {}

@@ -3,6 +3,7 @@
     Created on : Mar 4, 2016, 12:28:37 PM
     Author     : Victor
 --%>
+<%@page import="db.data.entity.Box"%>
 <%@ 
     page language="java" 
     contentType="text/html; charset=ISO-8859-1"
@@ -20,6 +21,7 @@
        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
+   
         <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
         <link rel="stylesheet" type="text/css" href="css/stylesheet.css">
             
@@ -32,6 +34,10 @@
                 function submitForm() {	  
                     document.getElementById('logout').submit();		  
                 }
+                
+                function deleteComic() {                             
+                    document.getElementById('deleteUserComic').submit();
+                }
 	  
         </script>
         
@@ -41,26 +47,28 @@
 	<script src="javascript/modernizr.js"></script> <!-- Modernizr -->
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 	<script src="javascript/main.js"></script> <!-- Gem jQuery -->
-        
-        <% 
+       
+    <title>Comic Inventory</title>
+    </head>
+      <% 
            //Global declarations
            User user = new User();
            Comic comicInfo = new Comic();
+           Box box = new Box();
            HashMap hmap;
            Set set;
            Iterator iterator;
-           List<Integer> comicID;
+           List<Integer> comicID, userComicID;
            List<String> un, usercomics, siteComics;
            String username = (String) session.getAttribute("username"); 
         %>
-    <title>Comic Inventory</title>
-    </head>
     <body>
                 <!--MODAL LOGIN DESIGN CREDIT:  https://codyhouse.co/gem/loginsignup-modal-window/ -->
         	<header role="banner">
 		<div id="cd-logo"><a href="index.jsp"><img id="logo" src="img/siteLogo.png" alt="Logo"></a></div>
                 <div id="navBar"> 
                         <a href="controlpanel.jsp" id="nav">Round-up!</a> | 
+                         <a href="addcomic.jsp" id="nav">Add Comic</a> |
                         <a href="faq.jsp" id="nav">FAQ</a> |
                         <a href="contact.jsp" id="nav">Contact</a>
                 </div>

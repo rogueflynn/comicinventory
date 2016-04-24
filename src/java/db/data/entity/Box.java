@@ -59,6 +59,19 @@ public class Box {
 			System.out.println("Error: " + ex);
 		}
 	}
+        public void updateBoxName(int boxID, String boxName) {
+                con.openConnection();
+		try {
+                    String sql = "update box set boxTracker=? where boxID=?";
+                    ps = con.getConnection().prepareStatement(sql); 	//Executes the sql
+                    ps.setString(1, boxName);
+                    ps.setInt(2, boxID);
+                    ps.executeUpdate();
+                    close();
+		} catch(Exception ex) {
+			System.out.println("Error: " + ex);
+		}
+	}
         private void close() {
             con.closeConnection();
             try { cs.close(); } catch(Exception e) {}

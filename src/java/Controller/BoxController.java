@@ -19,8 +19,9 @@ import javax.servlet.http.HttpSession;
  * @author Victor
  */
 @WebServlet(name = "BoxController", urlPatterns = {"/BoxController",
-                                                   "/deleteBox",
-                                                   "/createBox"})
+                                                   "/deleteBoxes",
+                                                   "/createBox",
+                                                   "/updateBoxName"})
 public class BoxController extends HttpServlet {
 
     Box box = new Box();
@@ -44,15 +45,42 @@ public class BoxController extends HttpServlet {
                 String boxName, username;
                 boxName = request.getParameter("boxName");
                 username = (String) session.getAttribute("username");
-                box.createBox(username, boxName);
-                response.sendRedirect(("controlpanel.jsp"));
+                if(!(boxName.equals(""))) {
+                    box.createBox(username, boxName);
+                    response.sendRedirect(("controlpanel.jsp"));
+                } else {
+                    response.sendRedirect(("controlpanel.jsp"));
+                }
             }  
             
                 //This section handles creating a box
-            if(urlPattern.equals("/deleteBox")) {
-                box.deleteBox(20);
-                response.sendRedirect(("controlpanel.jsp"));
-            }  
+            if(urlPattern.equals("/deleteBoxes")) {
+                //Gets the boxIDs as string
+                try {
+                    String userboxes[] = request.getParameterValues("userboxes");
+                    for(String boxID : userboxes) 
+                        box.deleteBox(Integer.parseInt(boxID));
+            
+                    response.sendRedirect(("controlpanel.jsp"));
+                } catch(java.lang.NullPointerException ex) {
+                    response.sendRedirect(("controlpanel.jsp"));
+                }
+            }
+            if(urlPattern.equals("/updateBoxName")) {
+                try{
+                    String boxName = (String) request.getParameter("boxName");
+                    int boxId = Integer.parseInt(request.getParameter("boxID"));
+                    box.updateBoxName(boxId, boxName);
+                    session.setAttribute("boxName", boxName);
+                    session.setAttribute("boxID", boxId);
+                    response.sendRedirect(("box.jsp?boxID=" + boxId + "&boxname=" + boxName));
+               
+                } catch(java.lang.NullPointerException ex) {
+                    String boxName = (String) session.getAttribute("boxName");
+                    String boxID = (String) session.getAttribute("boxID");
+                    response.sendRedirect(("box.jsp?boxID=" + boxID + "&boxname=" + boxName));
+                }
+            }
     }
 
     /**

@@ -21,7 +21,9 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "ControllerServlet", 
                                         urlPatterns = {"/ControllerServlet",
                                                        "/login",
-                                                       "/createAccount"})
+                                                       "/createAccount",
+                                                       "/deleteUserComic",
+                                                       "/deleteMultipleUserComics"})
 public class UserController extends HttpServlet {
   User user = new User();
 
@@ -56,9 +58,10 @@ public class UserController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            HttpSession session = request.getSession();
-            
-            String urlPattern = request.getServletPath();
+           HttpSession session = request.getSession();
+           String urlPattern = request.getServletPath();
+           String boxName = (String) session.getAttribute("boxName");
+           int boxID = (Integer) session.getAttribute("boxID");
             
             //This section handles creating an account
             if(urlPattern.equals("/createAccount")) {
@@ -70,6 +73,22 @@ public class UserController extends HttpServlet {
                 user.createAccount(un, pw, email);
                 response.sendRedirect(("controlpanel.jsp"));
             } 
+            if(urlPattern.equals("/deleteUserComic")) {
+             
+              response.sendRedirect("delete.jsp");
+            }
+            if(urlPattern.equals("/deleteMultipleUserComics")) {
+                        try {
+                             //Gets the comicID's as string
+                             String usercomics[] = request.getParameterValues("usercomics");
+                             for(String comicID : usercomics) {
+                              user.deleteComicInBox(boxID, Integer.parseInt(comicID));
+                             }  
+                            response.sendRedirect("box.jsp?boxID=" + boxID + "&boxname=" + boxName);
+                        } catch(java.lang.NullPointerException ex) {
+                            response.sendRedirect("box.jsp?boxID=" + boxID + "&boxname=" + boxName);
+                        }
+            }
     }
     @Override
     public String getServletInfo() {
