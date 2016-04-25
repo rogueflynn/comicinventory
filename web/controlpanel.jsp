@@ -43,7 +43,7 @@
        </form>
         
        <!--create box-->
-        <form action="createBox" method="post">
+        <form action="createBox" id="create_box_form" method="post">
             <input type="text" name="boxName" id="username" />
             <input type="submit" value="Create Box" />
         </form>

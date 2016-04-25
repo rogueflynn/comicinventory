@@ -1,3 +1,11 @@
+#create_box_error {
+    float: right;
+    margin-right: 330px;
+}
+#update_box_error {
+    float: right;
+    margin-right: 350px;
+}
 #navBar {
     padding-top: 50px;
     margin-left: 250px;
@@ -43,6 +51,7 @@
 }
 
 .addComicForm {
+    float: left;
     margin-left: 60px;
 }
 form#deletePreview {
@@ -50,7 +59,7 @@ form#deletePreview {
 }
 .imageContainer {
     float: right;
-    margin-right: 80px;
+    margin-right: 40px;
 }
 img#uploadImg {
     width: 180px;
@@ -210,7 +219,7 @@ tr#searchHeader {
     background-color: red;
     color: white;
 }
-select {
+select#putInBox {
     width:170px;
     height: 30px;
     font-size: 20px;
@@ -245,12 +254,23 @@ select {
     margin: -10px 0px 0px 768px;
     position: absolute;
 }
+#searchDBFilter {
+    width:500px;
+    margin: -10px 0px 0px 660px;
+    position: absolute;
+}
 img#searchPic {
     width: 70px;
     height: auto;
 }
 table#searchResult {
     width:400px;
+}
+table#userComicsSearchResult {
+    width:600px;
+}
+table#userBox {
+    width:600px;
 }
 td#comicSearchTitle {
     text-align:  center;

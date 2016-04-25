@@ -1,16 +1,16 @@
-	<fieldset><legend>Contact Information</legend>
-	<p> First Name: <input name = "firstname" type = "text" size = "25"/>  </p>
-        <p>Last Name: <input name = "lastname" type = "text" size = "25"/></p>
-        <p>Email: <input name = "email" type= "text" size = "25" /></p>
-	</fieldset>
+        <fieldset><legend>Contact Us: (All fields required)</legend> <br/>
+            <form action="" id="contactForm" method="post">    
+        <p> First Name:<input name = "firstname" type = "text" size = "25"/></p> <br />
+       <p> Last Name:<input name = "lastname" type = "text" size = "25"/></p> <br />
+        <p>Email: <input name = "email" type= "text" size = "25" /></p><br />
         <br/>
-	<fieldset><legend> Any Feedback? </legend>
-	<p> Subject: <input name = "subject" type = "text"  size = "25"/> </p>
+	<legend> Any Feedback? </legend>
+        <p> Subject: <input name = "subject" type = "text"  size = "25"/> </p><br />
 	<br /> Message
 	<br /> <textarea name = "message" rows = "3" cols = "50"></textarea>
 	</fieldset>
 	
-	<p><input type = "submit" value="Send"/>
-	<input type = "submit" value = "Reset"/>
+	<input type = "submit" value="Send"/>
+        </form>
+	
 
-	<br/> Thank You!</p>

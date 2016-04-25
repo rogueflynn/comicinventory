@@ -1,13 +1,25 @@
+<%
+    String accountCreated = (String) session.getAttribute("success");
+    if(accountCreated != null) {
+%>
+<script>alert("Account created succesfully. Please login to continue");</script>
+<% 
+     accountCreated = null;  
+     session.setAttribute("success", null);
+    }
+%>
+
 <% if(username == null) { //check to see if the user is logged on%> 
 <div id="createForm">
     <div id="loginHeader">Sign up!</div>
-    <form action="createAccount" method="post">
+    <form action="createAccount" id="create_form" method="post" >
         <fieldset>
             <div id="inputMargin">   
                 <p>
                     <label for="username"><div id="rLabel">Username:</div></label> 
                     <input type="text" name="username" id="username" />
                 </p>
+               
             </div>
             <div id="inputMargin"> 
             <p>
@@ -36,13 +48,17 @@
 <div id="loginForm">
     <div id="loginHeader">Login</div>
     
-       <form action="login" method="get">
+       <form action="login" method="get" id="login_form">
            <fieldset>
+                
           <div id="inputMargin"> 
+         
            <p>
                <label for="username"><div id="rLabel">Username:</div></label>
-               <input type="text" name="username" />
+               <input type="text" name="username" /><br/>
+               <span id="invalid-username"></span>
            </p>
+            
            </div>
            <div id="inputMargin">
            <p>

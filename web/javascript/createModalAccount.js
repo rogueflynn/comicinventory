@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 $().ready(function() {
-    $("#create_form").validate({
+    $("#create_modal_form").validate({
         rules: {
         username: {
             required: true,
@@ -14,11 +14,6 @@ $().ready(function() {
             required: true,
             minlength: 8,
             pwcheck: true
-        },
-        confirm_pass: {
-            required: true,
-            minlength: 8,
-            equalTo: "#pass"
         },
         email: {
             required: true,
@@ -36,11 +31,6 @@ $().ready(function() {
             pwcheck: "<br><font color=\"red\">Password must contain one number and<br> one lowercase letter.<br />  \n\
                       <div id=\"allowed\">Allowed characters: <br>(A-Z a-z 0-9 @ * _ - . !)</div></font>"
         },
-        confirm_pass: {
-            required: "<br><br><font color=\"red\">Please provide a password</font>",
-            minlength: "<br><br><font color=\"red\">Password requires a minimum of<br> 8 characters</font>",
-            equalTo: "<br><br><font color=\"red\">Please enter the same password as above</font>"
-        },
         email: {
             required: "<br><font color=\"red\">Please enter your email address</font>",
             email: "<br><font color=\"red\">Please enter a valid email</font>"
@@ -54,4 +44,7 @@ $().ready(function() {
                 && /\d/.test(value); // has a digit
         });
 });
+
+
+
 

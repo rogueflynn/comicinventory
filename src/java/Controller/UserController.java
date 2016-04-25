@@ -60,8 +60,7 @@ public class UserController extends HttpServlet {
             throws ServletException, IOException {
            HttpSession session = request.getSession();
            String urlPattern = request.getServletPath();
-           String boxName = (String) session.getAttribute("boxName");
-           int boxID = (Integer) session.getAttribute("boxID");
+           
             
             //This section handles creating an account
             if(urlPattern.equals("/createAccount")) {
@@ -69,8 +68,8 @@ public class UserController extends HttpServlet {
                 un = request.getParameter("username");
                 pw = request.getParameter("pass");
                 email = request.getParameter("email");
-                
                 user.createAccount(un, pw, email);
+                session.setAttribute("success", "true");
                 response.sendRedirect(("controlpanel.jsp"));
             } 
             if(urlPattern.equals("/deleteUserComic")) {
@@ -79,6 +78,8 @@ public class UserController extends HttpServlet {
             }
             if(urlPattern.equals("/deleteMultipleUserComics")) {
                         try {
+                             int boxID = (Integer) session.getAttribute("boxID");
+                             String boxName = (String) session.getAttribute("boxName");
                              //Gets the comicID's as string
                              String usercomics[] = request.getParameterValues("usercomics");
                              for(String comicID : usercomics) {
@@ -86,6 +87,8 @@ public class UserController extends HttpServlet {
                              }  
                             response.sendRedirect("box.jsp?boxID=" + boxID + "&boxname=" + boxName);
                         } catch(java.lang.NullPointerException ex) {
+                            int boxID = (Integer) session.getAttribute("boxID");
+                            String boxName = (String) session.getAttribute("boxName");
                             response.sendRedirect("box.jsp?boxID=" + boxID + "&boxname=" + boxName);
                         }
             }

@@ -20,6 +20,7 @@
              <url-pattern>/update.jsp</url-pattern>
              <url-pattern>/box.jsp</url-pattern>
              <url-pattern>/delete.jsp</url-pattern>
+             <url-pattern>/usercomic.jsp</url-pattern>
             <include-prelude>/WEB-INF/jspf/header.jspf</include-prelude>
             <include-coda>/WEB-INF/jspf/footer.jspf</include-coda>
         </jsp-property-group>

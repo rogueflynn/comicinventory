@@ -170,6 +170,97 @@ public class User {
                 return null;
             }
         }
+       public int getUserBoxID(String username, String boxTracker){
+            con.openConnection();
+            int boxID = -1;
+            try{
+                rs = con.getStatement().executeQuery("call getUserBoxID('" + username + "','" + boxTracker + "')");
+                while(rs.next()) {
+                    boxID = Integer.parseInt(rs.getString("boxID"));
+                }
+                close();
+                return boxID;
+            }catch(SQLException e){
+                e.printStackTrace();
+                return -1;
+            }
+        }
+       
+       public List<String> getUserSearchedComicName(String username, String comicname){
+            con.openConnection();
+            List<String> comicName = new ArrayList();
+            try{
+                rs = con.getStatement().executeQuery("call getUserComicandBox('" + username + "','" + comicname + "')");
+                while(rs.next()) {
+                    comicName.add(rs.getString("comicName"));
+                }
+                close();
+                return comicName;
+            }catch(SQLException e){
+                e.printStackTrace();
+                return null;
+            }
+        }
+        public List<String> getUserSearchedComicIssue(String username, String comicname){
+            con.openConnection();
+            List<String> comicIssue = new ArrayList();
+            try{
+                rs = con.getStatement().executeQuery("call getUserComicandBox('" + username + "','" + comicname + "')");
+                while(rs.next()) {
+                    comicIssue.add(rs.getString("issueNumber"));
+                }
+                close();
+                return comicIssue;
+            }catch(SQLException e){
+                e.printStackTrace();
+                return null;
+            }
+        }
+         public List<String> getUserSearchedComicID(String username, String comicname){
+            con.openConnection();
+            List<String> comicID = new ArrayList();
+            try{
+                rs = con.getStatement().executeQuery("call getUserComicandBox('" + username + "','" + comicname + "')");
+                while(rs.next()) {
+                    comicID.add(rs.getString("comicID"));
+                }
+                close();
+                return comicID;
+            }catch(SQLException e){
+                e.printStackTrace();
+                return null;
+            }
+        }
+        public List<String> getUserSearchedBoxName(String username, String comicname){
+            con.openConnection();
+            List<String> boxName = new ArrayList();
+            try{
+                rs = con.getStatement().executeQuery("call getUserComicandBox('" + username + "','" + comicname + "')");
+                while(rs.next()) {
+                    boxName.add(rs.getString("boxTracker"));
+                }
+                close();
+                return boxName;
+            }catch(SQLException e){
+                e.printStackTrace();
+                return null;
+            }
+        }
+         public List<String> getUserSearchedBoxID(String username, String comicname){
+            con.openConnection();
+            List<String> boxID = new ArrayList();
+            try{
+                rs = con.getStatement().executeQuery("call getUserComicandBox('" + username + "','" + comicname + "')");
+                while(rs.next()) {
+                    boxID.add(rs.getString("boxID"));
+                }
+                close();
+                return boxID;
+            }catch(SQLException e){
+                e.printStackTrace();
+                return null;
+            }
+        }
          /**This method returns all of the user information
          * based on the username provided
          * 

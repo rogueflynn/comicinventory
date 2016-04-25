@@ -12,6 +12,7 @@
     String name = (String) session.getAttribute("username");
     String search = request.getParameter("search");
     comicID = comicInfo.getComicsID(search);
+    if(!(search.equals(""))) {
    for (int cID : comicID) {
 %>
 <tr>
@@ -30,13 +31,17 @@
 <%}%>
      </table>
 </div>
+ <%
+   if(name != null) {
+   
+ %>
 <div class="addToBox">
     <div id="selectBoxHeader"><h3>Add to roundup</h3></div>
-<select name="box">
+<select id="putInBox" name="box">
 <option selected="selected" id="boxSelect">Select a box</option>
 <%
     //Grabs the user boxes
-    if(name != null) {
+    
         hmap = user.getUserBoxes(name);
         set = hmap.entrySet();
         iterator = set.iterator();
@@ -49,6 +54,9 @@
 <% } %>
 </select>
 <input type="submit" value="Add" />
-<%}%>
+<%
+   }
+ }
+%>
 </div>
 </form>

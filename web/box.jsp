@@ -12,14 +12,14 @@
         <span style="display:none;">Close</span></a></p>
 <ul class="toggle">
     <li>
-        <form action="updateBoxName" method="post">
+        <form action="updateBoxName" id="update_box_form_one" method="post">
             <input type="hidden" name="boxID" value="<%=thisbox%>" />
-            <input type="text" name="boxName" value="<%=boxName%>" /> <input type="submit" value="update" />
+             <input type="text" name="boxName" value="<%=boxName%>" /> <input type="submit" value="Update" />
         </form>
     </li>
 </ul>
 <form action="deleteMultipleUserComics" method="post">
-<table id="searchResult">
+<table id="userBox">
          <tr id="searchHeader">
             <th><input type="checkbox" id="selectall" /></th>
             <th>Title/Issue</th>
@@ -44,7 +44,6 @@
          <a href="comic.jsp?comicID=<%=userComicID.get(i)%>" >View</a>
      </td>
      <td width="180px" id="comicCellpic">
-     
                    <a href="delete.jsp?box_id=<%=box%>&comic_id=<%=userComicID.get(i)%>"  >Delete</a>
      </td>
 </tr>

@@ -27,6 +27,7 @@
             
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.0/jquery.min.js" ></script>
         <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
+     
         <script type="text/javascript" src="javascript/jquery.toggle.list.js" ></script> 
         <script type="text/javascript" src="javascript/selectall.js" ></script> 
         <script type="text/javascript">
@@ -40,6 +41,7 @@
                 }
 	  
         </script>
+     
         
         <!-- MODAL STUFF-->
 	<link rel="stylesheet" href="css/reset.css"> <!-- CSS reset -->
@@ -47,7 +49,20 @@
 	<script src="javascript/modernizr.js"></script> <!-- Modernizr -->
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 	<script src="javascript/main.js"></script> <!-- Gem jQuery -->
-       
+        
+        
+        <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
+        <script src="javascript/jquery.validate.js"></script>
+        <script src="javascript/loginpage.js"></script>
+        <script src="javascript/createAccount.js"></script>
+        <script src="javascript/update_box_one.js"></script>
+        <script src="javascript/create_box.js"></script>
+        <script src="javascript/add_comic_form.js"></script>
+        <script src="javascript/upload_photo.js"></script>
+        <script src="javascript/contact_form.js"></script>
+        <script src="javascript/loginmodelform.js"></script>
+        <script src="javascript/createModalAccount.js"></script>
+        
     <title>Comic Inventory</title>
     </head>
       <% 
@@ -72,10 +87,23 @@
                         <a href="faq.jsp" id="nav">FAQ</a> |
                         <a href="contact.jsp" id="nav">Contact</a>
                 </div>
+                        <% if(session.getAttribute("username") == null) { %>
                         <form action="searchSite" method="get" id="searchDB">
                             <input type="text" name="search" />
                             <input type="submit" value="Search"></input>
-                        </form>
+                            </form>
+                            <% } else { %>
+                            <form action="searchSite" method="get" id="searchDBFilter">
+                            <select name="filter">
+                                <option value="site">Search Site</option>
+                                <option value="userbox">Search for box</option>
+                                <option value="roundup">Search roundup</option>
+                            </select>
+                            <input type="text" name="search" />
+                            <input type="submit" value="Search"></input>
+                            </form>
+                            <% } %>
+                         
 		<nav class="main-nav">
                          <!--LOG OUT-->
                          <% if(username != null) { %>
@@ -102,7 +130,7 @@
 			</ul>
 
 			<div id="cd-login"> <!-- log in form -->
-				<form class="cd-form" method="get" action="login">
+				<form class="cd-form" method="get" id="login_modal_form" action="login">
 					<p class="fieldset">
 						<label class="image-replace cd-username" for="signin-username">Username</label>
 						<input class="full-width has-padding has-border" name="username"  type="text" placeholder="Username">
@@ -131,29 +159,24 @@
 			</div> <!-- cd-login -->
 
 			<div id="cd-signup"> <!-- sign up form -->
-				<form class="cd-form">
+				<form class="cd-form" action="createAccount" id="create_modal_form" method="post">
 					<p class="fieldset">
 						<label class="image-replace cd-username" for="signup-username">Username</label>
-						<input class="full-width has-padding has-border" id="signup-username" type="text" placeholder="Username">
+						<input class="full-width has-padding has-border" id="signup-username" name="username" type="text" placeholder="Username">
 						<span class="cd-error-message">Error message here!</span>
 					</p>
 
 					<p class="fieldset">
 						<label class="image-replace cd-email" for="signup-email">E-mail</label>
-						<input class="full-width has-padding has-border" id="signup-email" type="email" placeholder="E-mail">
+						<input class="full-width has-padding has-border" id="signup-email" name="email" type="email" placeholder="E-mail">
 						<span class="cd-error-message">Error message here!</span>
 					</p>
 
 					<p class="fieldset">
 						<label class="image-replace cd-password" for="signup-password">Password</label>
-						<input class="full-width has-padding has-border" id="signup-password" type="text"  placeholder="Password">
+						<input class="full-width has-padding has-border" id="signup-password" type="text" name="pass" placeholder="Password">
 						<a href="#0" class="hide-password">Hide</a>
 						<span class="cd-error-message">Error message here!</span>
-					</p>
-
-					<p class="fieldset">
-						<input type="checkbox" id="accept-terms">
-						<label for="accept-terms">I agree to the <a href="#0">Terms</a></label>
 					</p>
 
 					<p class="fieldset">

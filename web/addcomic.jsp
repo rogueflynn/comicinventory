@@ -12,7 +12,7 @@
 	    //This piece of code will test whether there is an active session in the browser.
 	   if(url==null) {
 	%>
-        <form action ="UploadFile" method="post" enctype="multipart/form-data">
+        <form action ="UploadFile" method="post" id="upload_photo_form" enctype="multipart/form-data">
             <p><b>Upload Photo:</b></p> 
             <input type="submit" value="Upload" />
             <input type="file" name="filetoupload" />
@@ -34,10 +34,10 @@
      <!--PHOTO UPLOAD FORM ENDS HERE -->
 <div class="addComicForm">
     <form action="addComic" id="createForm" method="post">
-            <p><label for="comicname"><div id="rLabel">Comic Name:</div></label> <input type="text" name="comicname" id="comicname"  /></p>
-            <p><label for="issuenumber"><div id="rLabel">Issue #:</div></label>   <input type="text" name="issuenumber" id="pass" /> </p>
-            <p><label for="publisher"><div id="rLabel">Publisher:</div></label>   <input type="text" name="publisher" id="publisher" /> </p>
-            <p><label for="printing"><div id="rLabel">Print:</div></label>   <input type="text" name="printing" id="printing" /> </p>
+            <p><label for="comicname"><div id="rLabel">Comic Name:</div></label> <input type="text" name="comicname" id="comicname"  /></p><br/>
+            <p><label for="issuenumber"><div id="rLabel">Issue #:</div></label>   <input type="text" name="issuenumber" id="pass" /> </p><br/>
+            <p><label for="publisher"><div id="rLabel">Publisher:</div></label>   <input type="text" name="publisher" id="publisher" /></p> <br/>
+            <p><label for="printing"><div id="rLabel">Print:</div></label>   <input type="text" name="printing" id="printing" /> </p><br/>
             <p><label for="year"><div id="rLabel">Year Released:</div> </label> <input type="text" name="year" id="year" /></p><br/><br/>
             
         <p><input type="submit" value="Submit" id="rSubmit"/> <input type="submit" value="Clear" id="rSubmit"/></p>
