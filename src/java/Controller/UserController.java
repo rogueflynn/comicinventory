@@ -7,6 +7,7 @@ package Controller;
 
 import db.data.entity.User;
 import java.io.IOException;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,7 +24,8 @@ import javax.servlet.http.HttpSession;
                                                        "/login",
                                                        "/createAccount",
                                                        "/deleteUserComic",
-                                                       "/deleteMultipleUserComics"})
+                                                       "/deleteMultipleUserComics",
+                                                       "/deleteMultipleUserComicsFromSearch"})
 public class UserController extends HttpServlet {
   User user = new User();
 
@@ -90,6 +92,38 @@ public class UserController extends HttpServlet {
                             int boxID = (Integer) session.getAttribute("boxID");
                             String boxName = (String) session.getAttribute("boxName");
                             response.sendRedirect("box.jsp?boxID=" + boxID + "&boxname=" + boxName);
+                        }
+            }
+            if(urlPattern.equals("/deleteMultipleUserComicsFromSearch")) {
+                        try {
+                             List<String> comicname = (List<String>)session.getAttribute("comicName");
+                             List<String> comicid = (List<String>) session.getAttribute("comicID");
+                             List<String> issuenumber = (List<String>) session.getAttribute("issueNumber");
+                             List<String> boxname = (List<String>) session.getAttribute("boxName");
+                             List<String> boxid = (List<String>) session.getAttribute("boxID");
+                         
+                             //Gets the comicID's as string
+                             String usercomics[] = request.getParameterValues("usercomics");
+                             for(String index : usercomics) {
+                                    user.deleteComicInBox(
+                                                    Integer.parseInt(boxid.get(Integer.parseInt(index))),
+                                                    Integer.parseInt(comicid.get(Integer.parseInt(index)))
+                                                   );
+                                    int i = Integer.parseInt(index);
+                                    comicname.remove(i);
+                                    comicid.remove(i);
+                                    issuenumber.remove(i);
+                                    boxname.remove(i);
+                                    boxid.remove(i);
+                             }  
+                             session.setAttribute("comicName", comicname);
+                             session.setAttribute("comicID", comicid);
+                             session.setAttribute("issueNumber", issuenumber);
+                             session.setAttribute("boxName", boxname);
+                             session.setAttribute("boxID", boxid);
+                            response.sendRedirect("usercomic.jsp");
+                        } catch(java.lang.NullPointerException ex) {
+                              response.sendRedirect("usercomic.jsp");
                         }
             }
     }

@@ -3,6 +3,22 @@
     Created on : Mar 27, 2016, 12:22:02 PM
     Author     : Victor
 --%>
+<%
+    String comicAdded = (String) session.getAttribute("comicsuccess");
+    if(comicAdded != null) {
+%>
+<script>alert("Comic successfully added. Press okay to continue.");</script>
+<% 
+     comicAdded = null;  
+     session.setAttribute("comicsuccess", null);
+    }
+%>
+ <% 
+	    //This piece of code will test whether there is an active session in the browser.
+            //If there no active session, the page will redirect back to the index page
+	   if(username == null)
+	    	response.sendRedirect("createAccount.jsp"); 
+ %>
    <fieldset>
       <!--PHOTO UPLOAD FORM STARTS HERE -->
       <div class="imageContainer">

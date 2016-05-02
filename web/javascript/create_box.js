@@ -12,7 +12,7 @@ $().ready(function() {
       
     messages: {
          boxName: {
-            required: "<div id=\"create_box_error\"><font color=\"red\" size=\"2\">Please enter a value</font></div>"
+            required: "<div id=\"create_box_error\"><font color=\"red\" size=\"2\">Please enter a box name</font></div>"
         }
     }
         

@@ -82,6 +82,7 @@ User user = new User();
                         HttpSession session = request.getSession();
             
                         String urlPattern = request.getServletPath();
+                        try {
                         if(urlPattern.equals("/addToRoundup")) {
                              String comics[] = request.getParameterValues("comics");  //Gets the comicID's as string
                              String boxID = request.getParameter("box");
@@ -89,6 +90,11 @@ User user = new User();
                                  comic.addComictoInventory(Integer.parseInt(comicID), Integer.parseInt(boxID));
                              }  
                              response.sendRedirect("controlpanel.jsp");
+                        }
+                        } catch(NullPointerException ex) {
+                            //String searchQuery = request.getParameter("search");
+                            response.sendRedirect("controlpanel.jsp");
+                            
                         }
                         //This section handles adding a comic
             if(urlPattern.equals("/addComic")) {
@@ -102,6 +108,7 @@ User user = new User();
                 int print = Integer.parseInt(printing);
                 comic.addComic(comicName, issueNumber, publisher, url, year, print);
                 session.removeAttribute("url");
+                session.setAttribute("comicsuccess", "true");
                 response.sendRedirect(("addcomic.jsp"));
             } 
             

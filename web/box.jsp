@@ -8,8 +8,8 @@
   session.setAttribute("boxID", thisbox);
 %>
 
-<p>Box: <%=boxName%> <a href="#" class="toggleLink" id="comiclist"><span>Edit</span>
-        <span style="display:none;">Close</span></a></p>
+<div class="userboxheader">Box: <%=boxName%><a href="#" class="toggleLink" id="comiclist"><span>Edit</span>
+            <span style="display:none;">Close</span></a></div>
 <ul class="toggle">
     <li>
         <form action="updateBoxName" id="update_box_form_one" method="post">
@@ -23,7 +23,6 @@
          <tr id="searchHeader">
             <th><input type="checkbox" id="selectall" /></th>
             <th>Title/Issue</th>
-            <th>View</th>
             <th>Delete</th>
          </tr>
 <%
@@ -38,13 +37,10 @@
     <input type="checkbox" class="checkbox" name="usercomics" value="<%= comic_id %>" id="comics">
     </td>
     <td id="comicSearchTitle">
-        <h3><%=usercomics.get(i) %></h3>
+        <a id="usercomiclink" href="comic.jsp?comicID=<%=userComicID.get(i)%>" ><%=usercomics.get(i) %></a>
     </td>
      <td width="180px" id="comicCellpic">
-         <a href="comic.jsp?comicID=<%=userComicID.get(i)%>" >View</a>
-     </td>
-     <td width="180px" id="comicCellpic">
-                   <a href="delete.jsp?box_id=<%=box%>&comic_id=<%=userComicID.get(i)%>"  >Delete</a>
+         <a href="delete.jsp?box_id=<%=thisbox%>&comic_id=<%=userComicID.get(i)%>"  ><img id="trashcan" src="assets/trashcan.png"></a>
      </td>
 </tr>
 

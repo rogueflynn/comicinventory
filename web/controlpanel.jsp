@@ -1,4 +1,4 @@
-       <h1>Control Panel</h1>
+       <h1>My Boxes</h1>
        <!--Delete boxes-->
        <form action="deleteBoxes" method="post">
        <input type="checkbox" id="selectall" />Select All
@@ -19,19 +19,19 @@
              while(iterator.hasNext()) {
                 Map.Entry mentry = (Map.Entry)iterator.next();
                 /*Box title*/
-               out.println("<p>  <input type=\"checkbox\" class=\"checkbox\" name=\"userboxes\""
+               out.println("<div id=\"cpBoxTitle\">  <input type=\"checkbox\" class=\"checkbox\" name=\"userboxes\""
                        + " value=\"" +(int) mentry.getKey() + "\" id=\"comics\"><a href=\"#\" class=\"toggleLink\" id=\"comiclist\">");
                out.println("<span>+</span>");
                out.println("<span style=\"display:none\">-</span>");
                out.println("</a>");
-               out.println("<a href=\"box.jsp?boxID=" +(int) mentry.getKey() + "&boxname=" + mentry.getValue()+ "\" id=\"comiclist\">");
-               out.println("Box: " + mentry.getValue() + "</a> <a href=\"delete.jsp?boxID=" +(int) mentry.getKey() + "\"> Delete</a></p>");
+               out.println("<a id=\"boxfont\" href=\"box.jsp?boxID=" +(int) mentry.getKey() + "&boxname=" + mentry.getValue()+ "\" id=\"comiclist\">");
+               out.println("Box: " + mentry.getValue() + "</a> <a href=\"delete.jsp?boxID=" +(int) mentry.getKey() + "\"> <img id=\"trashcan2\" src=\"assets/trashcan.png\"></a></div>");
                usercomics = user.getUserComicsinBox((int) mentry.getKey());
                 
                /*Comic list*/
                out.println("<ul class=\"toggle\">");
                 for(String c : usercomics) {
-                   out.println("<li>");
+                   out.println("<li id=\"liComic\">");
                    out.println(c);
                    out.println("</li>");
                 }
@@ -39,7 +39,7 @@
             }
    
         %>
-        <input type="submit" value="Delete Boxes" />
+        <input type="submit" value="Delete Boxes" id="delete_box_form" />
        </form>
         
        <!--create box-->

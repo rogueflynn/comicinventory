@@ -1,6 +1,6 @@
 
 
-<form action="addToRoundup" method="post">
+<form action="addToRoundup" method="post" id="add_to_box_form">
  <div class="leftComicColumn">
      <table id="searchResult">
          <tr id="searchHeader">
@@ -20,8 +20,8 @@
     <input type="checkbox" class="checkbox" name="comics" value="<%= cID %>" id="comics">
     </td>
     <td id="comicSearchTitle">
-        <h3><%=comicInfo.getComicTitle(cID) %></h3>
-        <p>Issue #<%=comicInfo.getComicIssue(cID)%></p>
+        <a id="usercomiclink" href="comic.jsp?comicID=<%=cID%>"><p><%=comicInfo.getComicTitle(cID) %></p>
+             <p>Issue #<%=comicInfo.getComicIssue(cID)%></p></a>
     </td>
      <td width="180px" id="comicCellpic">
          <img src="comicImages/<%=comicInfo.getComicPhoto(cID) %>" id="searchPic">
@@ -36,9 +36,9 @@
    
  %>
 <div class="addToBox">
-    <div id="selectBoxHeader"><h3>Add to roundup</h3></div>
+    <div id="selectBoxHeader"><h3>Add to box</h3></div>
 <select id="putInBox" name="box">
-<option selected="selected" id="boxSelect">Select a box</option>
+<option selected="selected" id="boxSelect" value="default">Select a box</option>
 <%
     //Grabs the user boxes
     

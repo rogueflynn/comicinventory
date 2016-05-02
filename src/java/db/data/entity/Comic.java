@@ -21,7 +21,7 @@ public class Comic {
       private ResultSet rs;
       private PreparedStatement ps;   //Used when executing an update or delete
       private String comicName;
-      private String issueNumber,photo;
+      private String issueNumber,photo,year,print,publisher;
       
     public Comic() {
         con = new DBConnect();
@@ -93,6 +93,49 @@ public class Comic {
                         return null;
                 }
         }
+         public String getComicYear(int comicID) {
+                con.openConnection();
+                try {
+                        rs = con.getStatement().executeQuery("select yearReleased from comics where comicID = " + comicID + ";");
+                        while(rs.next())
+                            year = rs.getString("yearReleased"); 
+                        close();
+                        return year;
+                }
+                catch (SQLException e) {
+                        e.printStackTrace();
+                        return null;
+                }
+        }
+        public String getComicPublisher(int comicID) {
+                con.openConnection();
+                try {
+                        rs = con.getStatement().executeQuery("select publisher from comics where comicID = " + comicID + ";");
+                        while(rs.next())
+                            publisher = rs.getString("publisher"); 
+                        close();
+                        return publisher;
+                }
+                catch (SQLException e) {
+                        e.printStackTrace();
+                        return null;
+                }
+        }
+        public String getComicPrint(int comicID) {
+                con.openConnection();
+                try {
+                        rs = con.getStatement().executeQuery("select printing from comics where comicID = " + comicID + ";");
+                        while(rs.next())
+                            print = rs.getString("printing"); 
+                        close();
+                        return print;
+                }
+                catch (SQLException e) {
+                        e.printStackTrace();
+                        return null;
+                }
+        }
+       
      /*
                 The addComictoInventory will add the comic to the 
                 inventory of the user currently logged in.

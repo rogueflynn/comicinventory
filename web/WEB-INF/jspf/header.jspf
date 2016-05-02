@@ -62,6 +62,7 @@
         <script src="javascript/contact_form.js"></script>
         <script src="javascript/loginmodelform.js"></script>
         <script src="javascript/createModalAccount.js"></script>
+        <script src="javascript/addToBox.js"></script>
         
     <title>Comic Inventory</title>
     </head>
@@ -82,7 +83,7 @@
         	<header role="banner">
 		<div id="cd-logo"><a href="index.jsp"><img id="logo" src="img/siteLogo.png" alt="Logo"></a></div>
                 <div id="navBar"> 
-                        <a href="controlpanel.jsp" id="nav">Round-up!</a> | 
+                        <a href="controlpanel.jsp" id="nav">My Boxes</a> | 
                          <a href="addcomic.jsp" id="nav">Add Comic</a> |
                         <a href="faq.jsp" id="nav">FAQ</a> |
                         <a href="contact.jsp" id="nav">Contact</a>
@@ -96,8 +97,8 @@
                             <form action="searchSite" method="get" id="searchDBFilter">
                             <select name="filter">
                                 <option value="site">Search Site</option>
-                                <option value="userbox">Search for box</option>
-                                <option value="roundup">Search roundup</option>
+                                <option value="userbox">Search for a box</option>
+                                <option value="roundup">Search my inventory</option>
                             </select>
                             <input type="text" name="search" />
                             <input type="submit" value="Search"></input>
