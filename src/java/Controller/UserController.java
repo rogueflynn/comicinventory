@@ -109,12 +109,14 @@ public class UserController extends HttpServlet {
                                                     Integer.parseInt(boxid.get(Integer.parseInt(index))),
                                                     Integer.parseInt(comicid.get(Integer.parseInt(index)))
                                                    );
-                                    int i = Integer.parseInt(index);
-                                    comicname.remove(i);
-                                    comicid.remove(i);
-                                    issuenumber.remove(i);
-                                    boxname.remove(i);
-                                    boxid.remove(i);
+                                    try {
+                                        int i = Integer.parseInt(index);
+                                        comicname.remove(i-1);
+                                        comicid.remove(i-1);
+                                        issuenumber.remove(i-1);
+                                        boxname.remove(i-1);
+                                        boxid.remove(i-1);
+                                    } catch(IndexOutOfBoundsException ex) {}
                              }  
                              session.setAttribute("comicName", comicname);
                              session.setAttribute("comicID", comicid);

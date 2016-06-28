@@ -47,7 +47,27 @@ public class Comic {
             }		
 	}
         
-        //Returnst cover of the comic
+        /*The getData function retrieves the comics by title.*/
+	public List<String> getLastComicsEntered() {
+            con.openConnection();
+            List<String> comics = new ArrayList();
+            try{
+                String sql =   "SELECT comicName, issueNumber FROM comics order by comicID desc limit 5;";
+            
+                rs = con.getStatement().executeQuery(sql);
+                while(rs.next()) {
+                    comics.add(rs.getString("comicName") + " Issue #" + rs.getString("issueNumber"));
+                }
+                close();
+                return comics;
+            }catch (SQLException e){
+                e.printStackTrace();
+                return null;
+            }		
+	}
+        
+        
+        //Returns cover of the comic
          public String getComicPhoto(int comicID) {
                 con.openConnection();
                 try {
@@ -93,6 +113,8 @@ public class Comic {
                         return null;
                 }
         }
+           
+        
          public String getComicYear(int comicID) {
                 con.openConnection();
                 try {
